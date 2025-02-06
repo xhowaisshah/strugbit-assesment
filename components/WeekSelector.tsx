@@ -3,10 +3,9 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AddOrderToWeek } from "./addOrderToWeek"
 import { useMealStore } from "@/lib/store/useMealStore"
-import { MealCard } from "./MealCard"
 
 export function WeekSelector() {
-  const { weekMeals, setAllTabs, allTabs } = useMealStore()
+  const { /* weekMeals, */ setAllTabs, allTabs } = useMealStore()
 
   const handleSetTab = (tabNumber: number) => {
     setAllTabs(tabNumber)

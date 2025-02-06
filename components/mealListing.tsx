@@ -4,11 +4,12 @@ import useSWR from "swr";
 import axios from "axios";
 import { MealCard, MealCardSkeleton } from "./MealCard";
 import { useMealStore } from "@/lib/store/useMealStore";
+import { Meal } from "@/lib/store/useMealStore";
 
-const fetchMeals = async (url: string, setAllMeals: (meals: any[]) => void) => {
+const fetchMeals = async (url: string, setAllMeals: (meals: Meal[]) => void) => {
     const response = await axios.get(url);
     if (response.data?.recipes && response.data.recipes.length > 0) {
-        const meals = response.data.recipes.map((meal: any) => ({
+        const meals: Meal[] = response.data.recipes.map((meal: Meal) => ({
             id: meal.id,
             title: meal.title,
             instructions: meal.instructions,
@@ -25,9 +26,9 @@ const fetchMeals = async (url: string, setAllMeals: (meals: any[]) => void) => {
 
 const MealListing: React.FC = () => {
     const { allTabs, weekMeals, setAllMeals } = useMealStore();
-    const { data, error } = useSWR(
+    const { data, error } = useSWR<Meal[]>(
         "https://dummyjson.com/recipes",
-        (url) => fetchMeals(url, setAllMeals)
+        (url: string) => fetchMeals(url, setAllMeals)
     );
 
     if (error) return <div>Error loading meals...</div>;
@@ -47,7 +48,7 @@ const MealListing: React.FC = () => {
         }
         return (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data.map((meal: any) => (
+                {data.map((meal: Meal) => (
                     <MealCard
                         type="asMeal"
                         key={meal.id}
