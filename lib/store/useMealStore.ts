@@ -12,7 +12,7 @@ export interface Meal {
 }
 
 interface WeekMeals {
-  [key: string]: Meal[] // week1, week2, etc.
+  [key: string]: Meal[] 
 }
 
 interface MealStore {
@@ -58,7 +58,8 @@ export const useMealStore = create<MealStore>()(
             ...state.weekMeals,
             [`week${weekNumber}`]: [...state.weekMeals[`week${weekNumber}`], ...meals],
           },
-          selectedMeals: [], // Clear selection after adding to week
+          selectedMeals: [],
+          allTabs: weekNumber,
         })),
       removeMealFromWeek: (mealId, weekNumber) =>
         set((state) => ({
