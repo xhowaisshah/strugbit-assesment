@@ -14,7 +14,7 @@ const fetchMeals = async (url: string, setAllMeals: (meals: any[]) => void) => {
             instructions: meal.instructions,
             cuisine: meal.cuisine,
             rating: meal.rating,
-            mealType: meal.mealType[0],
+            mealType: meal.mealType,
             image: meal.image
         }));
         setAllMeals(meals);

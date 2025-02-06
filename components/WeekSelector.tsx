@@ -1,6 +1,6 @@
 "use client"
 
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AddOrderToWeek } from "./addOrderToWeek"
 import { useMealStore } from "@/lib/store/useMealStore"
 import { MealCard } from "./MealCard"
